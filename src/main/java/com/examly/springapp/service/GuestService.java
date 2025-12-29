@@ -16,4 +16,6 @@ public interface GuestService {
     List<Guest> getByPhone(String phone);
 
     List<Guest> getByEmail(String email);
+    
+    void delete(Long id);
 }

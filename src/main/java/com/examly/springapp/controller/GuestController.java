@@ -41,23 +41,46 @@ public class GuestController {
             @RequestBody Guest guest) {
         return ResponseEntity.ok(service.update(id, guest));
     }
+
+
     
+// @GetMapping("/phone/{phone}")
+// public ResponseEntity<?> getGuestsByPhone(@PathVariable String phone) {
+
+//     List<Guest> guests = service.getByPhone(phone);
+
+//     if (guests.isEmpty()) {
+//         return ResponseEntity
+//                 .status(HttpStatus.NO_CONTENT)
+//                 .body("No guest found with phone: " + phone);
+//     }
+
+//     return ResponseEntity.ok(guests);
+// }
+
 @GetMapping("/phone/{phone}")
-public ResponseEntity<?> getGuestsByPhone(@PathVariable String phone) {
+public ResponseEntity<?> getGuestByPhone(@PathVariable String phone) {
 
     List<Guest> guests = service.getByPhone(phone);
 
     if (guests.isEmpty()) {
         return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
+                .status(HttpStatus.NOT_FOUND)
                 .body("No guest found with phone: " + phone);
     }
 
     return ResponseEntity.ok(guests);
 }
 
+
     @GetMapping("/email/{email}")
     public ResponseEntity<List<Guest>> getGuestsByEmail(@PathVariable String email) {
         return ResponseEntity.ok(service.getByEmail(email));
     }
+
+    @DeleteMapping("/{id}")
+public ResponseEntity<Void> delete(@PathVariable Long id) {
+    service.delete(id);
+    return ResponseEntity.ok().build();
+}
 }

@@ -9,8 +9,13 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roomId;
 
+    // @Column(unique = false, nullable = false)
     private String roomNumber;
+
+    // @Column(unique = false, nullable = false)
     private double pricePerNight;
+
+    // @Column(unique = false, nullable = false)
     private boolean available;
 
     @ManyToOne

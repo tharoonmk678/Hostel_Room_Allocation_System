@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.examly.springapp.exception.ResourceNotFoundException;
 import com.examly.springapp.model.Guest;
 import com.examly.springapp.repository.GuestRepo;
 
@@ -26,7 +27,7 @@ public class GuestServiceImpl implements GuestService {
 
     @Override
     public Guest getById(Long id) {
-        return repo.findById(id).orElse(null);
+        return repo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Guest not found"));
     }
 
     @Override
@@ -43,5 +44,13 @@ public class GuestServiceImpl implements GuestService {
     @Override
     public List<Guest> getByEmail(String email) {
         return repo.findByEmail(email);
+    }
+
+    @Override
+    public void delete(Long id) {
+        Guest guest = repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Guest not found"));
+
+        repo.delete(guest);   // cascade will handle bookings & payments
     }
 }

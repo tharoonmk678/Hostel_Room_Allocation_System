@@ -20,6 +20,8 @@ public class Booking {
     private Guest guest;
 
     private String checkInDate;
-
+   
     private String checkOutDate;
+    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Payment payment;
 }

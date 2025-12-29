@@ -16,4 +16,6 @@ public interface RoomService {
     List<Room> getByCategoryName(String name);
 
     List<Room> getByRoomNumber(String roomNumber);
+        void deleteRoom(Long id);
+
 }

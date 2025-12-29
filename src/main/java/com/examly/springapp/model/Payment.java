@@ -11,6 +11,7 @@ public class Payment {
     private Long paymentId;
 
     private Double amount;
+
     private String paymentMethod;
 
     @OneToOne

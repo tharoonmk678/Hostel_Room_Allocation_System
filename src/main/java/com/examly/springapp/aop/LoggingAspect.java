@@ -1,5 +1,4 @@
 package com.examly.springapp.aop;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 @Component
 public class LoggingAspect {
 
-    // 1️⃣ BEFORE advice – logs method entry
     @Before("execution(* com.examly.springapp.controller..*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
 
@@ -26,7 +24,6 @@ public class LoggingAspect {
         );
     }
 
-    // 2️⃣ AFTER RETURNING – logs successful execution
     @AfterReturning(
         pointcut = "execution(* com.examly.springapp.controller..*(..))",
         returning = "result"
@@ -42,7 +39,6 @@ public class LoggingAspect {
         );
     }
 
-    // 3️⃣ AFTER THROWING – logs exceptions
     @AfterThrowing(
         pointcut = "execution(* com.examly.springapp.controller..*(..))",
         throwing = "exception"
@@ -58,7 +54,6 @@ public class LoggingAspect {
         );
     }
 
-    // 4️⃣ AROUND advice – measures execution time
     @Around("execution(* com.examly.springapp.service..*(..))")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
 

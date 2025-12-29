@@ -8,9 +8,12 @@ public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long guestId;
-
+    
     private String name;
+
+    // @Pattern(regexp = "\\d{10}")
     private String phone;
+
     private String email;
 
     public Long getGuestId() {
